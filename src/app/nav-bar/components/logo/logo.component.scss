@@ -1,0 +1,12 @@
+.nav-bar-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-bar-logo-img {
+  height: 35px;
+  margin: 10px;
+  display: inline;
+}

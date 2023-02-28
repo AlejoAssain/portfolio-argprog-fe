@@ -1,0 +1,40 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 20px;
+}
+
+.login-header-container {
+  width: 290px;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-form-field {
+  margin: 5px 0;
+  width: 300px;
+}
+
+.login-button {
+  margin-bottom: 20px;
+  align-self: flex-end;
+}
+
+

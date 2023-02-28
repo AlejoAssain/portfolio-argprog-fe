@@ -1,0 +1,10 @@
+@import "./shared/mixin";
+
+@include common-styles();
+
+.app-container {
+  display: block;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}

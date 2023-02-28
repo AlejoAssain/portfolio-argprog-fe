@@ -1,0 +1,65 @@
+<div class="login-container">
+  <mat-card class="login-wrapper">
+
+    <mat-card-header class="login-header-container">
+
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Login to edit the portfolio!</mat-card-subtitle>
+
+    </mat-card-header>
+
+    <form
+      class="login-form data-form"
+      #loginForm="ngForm"
+    >
+
+      <mat-form-field class="login-form-field" appearance="fill">
+        <mat-label>Enter your username</mat-label>
+        <input
+          matInput
+          type="text"
+          name="username"
+          ngModel
+          #username="ngModel"
+          placeholder="Username"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="username.errors?.['required']">Username is required</mat-error>
+        <mat-error *ngIf="username.errors?.['minlength']">Username is too short</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login-form-field" appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          ngModel
+          #password="ngModel"
+          placeholder="Password"
+          required
+          minlength="4"
+        >
+        <button
+          mat-icon-button matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
+        <mat-error *ngIf="password.errors?.['minlength']">Password is too short</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button color="primary"
+        class="login-button"
+        (click)="handleSubmit(loginForm)"
+      >Login</button>
+
+    </form>
+
+  </mat-card>
+</div>
