@@ -1,4 +1,16 @@
 @mixin common-styles() {
+  .section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20vw;
+    border-radius: 20px;
+  }
+
+  .section-wrapper {
+    padding: 25px;
+  }
 }
 
 @mixin form-styles() {
