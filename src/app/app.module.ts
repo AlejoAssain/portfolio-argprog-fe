@@ -12,13 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './shared/services/auth/auth.service';
 import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/services/data/data.service';
+import { EditModule } from './edit/edit.module';
+import { EditComponent } from './edit/edit.component';
 
-
-const routes = [
-  { path: "", component: ContentComponent },
-  { path: "login", component: LoginComponent },
-  // { path: "edit", component: }
-]
 
 @NgModule({
   declarations: [
@@ -30,8 +26,13 @@ const routes = [
     SharedModule,
     ContentModule,
     LoginModule,
+    EditModule,
     NavBarModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot([
+      { path: "", component: ContentComponent },
+      { path: "login", component: LoginComponent },
+      { path: "edit", component: EditComponent }
+    ])
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]

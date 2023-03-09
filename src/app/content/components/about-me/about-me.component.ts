@@ -11,10 +11,7 @@ import { DataService } from 'src/app/shared/services/data/data.service';
 })
 export class AboutMeComponent implements OnInit {
 
-  constructor(
-    private readonly dataService: DataService,
-    private readonly auth: AuthService
-  ) {}
+  constructor( private readonly dataService: DataService ) {}
 
   data = {
     title: "",
@@ -24,24 +21,7 @@ export class AboutMeComponent implements OnInit {
     profilePicCaption: "",
   };
 
-  userIsAuthenticated: boolean = false;
-  userIsEditing: boolean = false;
-
   ngOnInit(): void {
     this.data = this.dataService.getAboutMeData();
-    this.userIsAuthenticated = this.auth.isAuthenticated()
   }
-
-  startEditing() {
-    if (!this.userIsAuthenticated) return
-    this.userIsEditing = true;
-  }
-
-  saveChanges() {
-    this.userIsEditing = false;
-  }
-
-
-
-
 }

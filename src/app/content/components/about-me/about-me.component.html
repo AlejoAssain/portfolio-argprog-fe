@@ -8,10 +8,13 @@
 
         <mat-card-title>{{ data.title }}</mat-card-title>
         <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
-        <img
-          class="about-me-img"
-          [src]="data.profilePicLink"
-        >
+        <div class="about-me-img-container">
+          <img
+            class="about-me-img"
+            [src]="data.profilePicLink"
+          >
+          <h4>{{ data.profilePicCaption }}</h4>
+        </div>
 
       </mat-card-title-group>
     </mat-card-header>

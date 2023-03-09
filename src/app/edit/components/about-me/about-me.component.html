@@ -1,0 +1,107 @@
+<div class="section-container">
+  <mat-card class="section-wrapper">
+
+    <mat-card-header class="section-header-container">
+
+      <mat-card-title>ACERCA DE MI</mat-card-title>
+
+    </mat-card-header>
+
+    <form
+      class="aboutMe-form section-form data-form"
+      [formGroup]="aboutMeForm"
+      (ngSubmit)="onSubmit()"
+    >
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Título de la sección</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="title"
+          placeholder="Titulo"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="titleControl.errors?.['required']">El título es requerido</mat-error>
+        <mat-error *ngIf="titleControl.errors?.['minlength']">El título es muy corto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Subtítulo de la sección</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="subtitle"
+          placeholder="Subtitulo"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="subtitleControl.errors?.['required']">El subtítulo es requerido</mat-error>
+        <mat-error *ngIf="subtitleControl.errors?.['minlength']">El subtítulo es muy corto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Texto de la sección</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="text"
+          placeholder="Texto"
+          required
+          minlength="10"
+        >
+        <mat-error *ngIf="textControl.errors?.['required']">El texto es requerido</mat-error>
+        <mat-error *ngIf="textControl.errors?.['minlength']">El texto es muy corto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Link a la foto de perfil</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="profilePicLink"
+          placeholder="Link"
+          required
+        >
+        <mat-error *ngIf="profilePicLinkControl.errors?.['required']">El link es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Pie de foto de perfil</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="profilePicCaption"
+          placeholder="Pie de foto"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="profilePicCaptionControl.errors?.['required']">El pie de foto es requerido</mat-error>
+        <mat-error *ngIf="profilePicCaptionControl.errors?.['minlength']">El pie de foto es muy corto</mat-error>
+      </mat-form-field>
+
+      <div class="about-me-img-container">
+        <h3>Previsualización de foto</h3>
+        <img
+          class="about-me-img"
+          [src]="data.profilePicLink"
+        >
+        <h4>{{ data.profilePicCaption }}</h4>
+      </div>
+
+      <button
+        mat-raised-button
+        class="section-form-button"
+        color="primary"
+        [disabled]="!aboutMeForm.valid || !aboutMeForm.dirty"
+        type="submit"
+      >
+        Guardar
+      </button>
+
+    </form>
+
+  </mat-card>
+</div>
+
