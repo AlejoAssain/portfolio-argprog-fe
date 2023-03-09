@@ -1,6 +1,17 @@
 <button
-  mat-raised-button
-  routerLink="/login"
+  *ngIf="isUserAuthenticated(); else elseBlock"
+  mat-mini-fab
+  color="warn"
+  (click)="handleLogout()"
 >
-  Login
+  <mat-icon>logout</mat-icon>
 </button>
+<ng-template #elseBlock>
+  <button
+    mat-mini-fab
+    color="basic"
+    routerLink="/login"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
+</ng-template>

@@ -1,1 +1,41 @@
-<p>projects works!</p>
+<div class="section-container">
+  <mat-card class="section-wrapper">
+
+    <mat-card-header>
+      <mat-card-title-group class="section-title-container">
+        <mat-card-title>{{ data.title }}</mat-card-title>
+        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+
+    <mat-card-content class="section-items-container project-items-container">
+      <div
+        class="section-item-container"
+        *ngFor="let project of data.projects"
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="navigateToProject(project.link)"
+        >
+          Ir
+        </button>
+        <div class="section-text-container">
+          <div class="section-item-title">
+            {{ project.name }}
+          </div>
+          <div>
+            {{ project.description }}
+          </div>
+          <div class="project-item-date">
+            {{ project.year + " " + project.month }}
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

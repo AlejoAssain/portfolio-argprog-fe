@@ -1,22 +1,25 @@
 <div class="section-container">
+
   <mat-card class="section-wrapper about-me-wrapper">
 
     <mat-card-header>
-      <mat-card-title-group>
+
+      <mat-card-title-group class="section-title-container">
+
         <mat-card-title>{{ data.title }}</mat-card-title>
         <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
         <img
           class="about-me-img"
           [src]="data.profilePicLink"
         >
+
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content>
       {{ data.text }}
     </mat-card-content>
-  </mat-card>
-  <mat-progress-bar mode="indeterminate" class="section-footer-bar"/>
 
+  </mat-card>
 </div>
 

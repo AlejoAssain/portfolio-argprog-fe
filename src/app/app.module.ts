@@ -9,6 +9,9 @@ import { ContentModule } from './content/content.module';
 import { LoginModule } from './login/login.module';
 import { ContentComponent } from './content/content.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './shared/services/auth/auth.service';
+import { SharedModule } from './shared/shared.module';
+import { DataService } from './shared/services/data/data.service';
 
 
 @NgModule({
@@ -18,6 +21,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    SharedModule,
     ContentModule,
     LoginModule,
     NavBarModule,
@@ -26,7 +30,7 @@ import { LoginComponent } from './login/login.component';
       { path: "login", component: LoginComponent }
     ])
   ],
-  providers: [],
+  providers: [AuthService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

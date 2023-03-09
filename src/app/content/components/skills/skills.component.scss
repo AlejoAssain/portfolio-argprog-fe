@@ -1,0 +1,17 @@
+@import "../../../shared/mixin";
+
+@include common-styles();
+
+.skill-items-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.skill-item-container {
+  display: inline;
+  width: fit-content;
+  margin: 20px 10px;
+}

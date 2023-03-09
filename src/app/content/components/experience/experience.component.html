@@ -1,1 +1,46 @@
-<p>experience works!</p>
+<div class="section-container">
+  <mat-card class="section-wrapper">
+
+    <mat-card-header>
+      <mat-card-title-group class="section-title-container">
+        <mat-card-title>{{ data.title }}</mat-card-title>
+        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+
+    <mat-card-content class="section-items-container experience-items-container">
+      <div
+        class="section-item-container"
+        *ngFor="let experience of data.experiences"
+      >
+        <img
+          class="section-item-img"
+          *ngIf="experience.imageLink"
+          [src]="experience.imageLink"
+          alt="Experience Logo"
+        >
+        <div class="section-text-container">
+          <div class="section-item-title">
+            {{ experience.position }}
+          </div>
+          <div class="experience-item-company">
+            En {{ experience.company }}
+          </div>
+          <div>
+            {{ experience.positionInformation }}
+          </div>
+          <div class="experience-item-date">
+            {{ experience.yearFrom + " " + experience.monthFrom }} - {{ experience.monthTo + " " + experience.yearTo }}
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+
+
+

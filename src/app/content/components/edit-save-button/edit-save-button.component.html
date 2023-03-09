@@ -1,0 +1,22 @@
+<ng-template [ngIf]="userIsAuthenticated">
+  <button
+    class="section-edit-button"
+    *ngIf="!userIsEditing; else elseBlock"
+    mat-mini-fab
+    color="basic"
+    (click)="onEditButtonClick()"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
+  <ng-template #elseBlock>
+    <button
+      mat-mini-fab
+      class="section-save-button"
+      color="primary"
+      (click)="onSaveButtonClick()"
+    >
+      <mat-icon>save_all</mat-icon>
+    </button>
+  </ng-template>
+</ng-template>
+

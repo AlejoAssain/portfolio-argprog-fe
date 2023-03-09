@@ -1,1 +1,43 @@
-<p>education works!</p>
+<div class="section-container">
+  <mat-card class="section-wrapper">
+
+    <mat-card-header>
+      <mat-card-title-group class="section-title-container">
+        <mat-card-title>{{ data.title }}</mat-card-title>
+        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+
+    <mat-card-content class="section-items-container education-items-container">
+      <div
+        class="section-item-container"
+        *ngFor="let education of data.educations"
+      >
+        <img
+          class="section-item-img"
+          *ngIf="education.imageLink"
+          [src]="education.imageLink"
+          alt="Education Logo"
+        >
+        <div class="section-text-container">
+          <div class="section-item-title">
+            {{ education.title }}
+          </div>
+          <div class="education-item-institution">
+            En {{ education.institutionName }}
+          </div>
+          <div class="education-item-date">
+            {{ education.yearFrom }} - {{ education.yearTo || presentDateText }}
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+
+
+

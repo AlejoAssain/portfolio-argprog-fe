@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
     RouterModule
   ],
   exports: [
