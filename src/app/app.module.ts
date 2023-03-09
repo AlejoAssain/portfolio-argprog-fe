@@ -14,6 +14,12 @@ import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/services/data/data.service';
 
 
+const routes = [
+  { path: "", component: ContentComponent },
+  { path: "login", component: LoginComponent },
+  // { path: "edit", component: }
+]
+
 @NgModule({
   declarations: [
     AppComponent
@@ -25,10 +31,7 @@ import { DataService } from './shared/services/data/data.service';
     ContentModule,
     LoginModule,
     NavBarModule,
-    RouterModule.forRoot([
-      { path: "", component: ContentComponent },
-      { path: "login", component: LoginComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]
