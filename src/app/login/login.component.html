@@ -4,7 +4,7 @@
     <mat-card-header class="login-header-container">
 
       <mat-card-title>Login</mat-card-title>
-      <mat-card-subtitle>Login to edit the portfolio!</mat-card-subtitle>
+      <mat-card-subtitle>Accede para editar el portfolio!</mat-card-subtitle>
 
     </mat-card-header>
 
@@ -14,7 +14,7 @@
     >
 
       <mat-form-field class="login-form-field" appearance="fill">
-        <mat-label>Enter your username</mat-label>
+        <mat-label>Ingresa tu nombre de usuario</mat-label>
         <input
           matInput
           type="text"
@@ -25,12 +25,12 @@
           required
           minlength="4"
         >
-        <mat-error *ngIf="username.errors?.['required']">Username is required</mat-error>
-        <mat-error *ngIf="username.errors?.['minlength']">Username is too short</mat-error>
+        <mat-error *ngIf="username.errors?.['required']">El nombre de usuario es requerido</mat-error>
+        <mat-error *ngIf="username.errors?.['minlength']">El nombre de usuario es muy corto</mat-error>
       </mat-form-field>
 
       <mat-form-field class="login-form-field" appearance="fill">
-        <mat-label>Enter your password</mat-label>
+        <mat-label>Ingresa tu contraseña</mat-label>
         <input
           matInput
           [type]="hide ? 'password' : 'text'"
@@ -49,15 +49,17 @@
         >
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
-        <mat-error *ngIf="password.errors?.['minlength']">Password is too short</mat-error>
+        <mat-error *ngIf="password.errors?.['required']">La contraseña es requerida</mat-error>
+        <mat-error *ngIf="password.errors?.['minlength']">La contraseña es muy corta</mat-error>
       </mat-form-field>
 
       <button
         mat-raised-button color="primary"
         class="login-button"
         (click)="handleSubmit(loginForm)"
-      >Login</button>
+      >
+        Login
+      </button>
 
     </form>
 
