@@ -1,0 +1,38 @@
+<div class="drag-drop-container">
+
+  <div cdkDropList class="drag-drop-list" (cdkDropListDropped)="drop($event)">
+
+    <div class="drag-drop-box" *ngFor="let project of projects; let elementIndex=index;" cdkDrag>
+      <app-project-form
+        [project]="project"
+        [projectIndex]="elementIndex"
+        (updateEvent)="onProjectUpdate($event)"
+        (deleteEvent)="onProjectDelete($event)"
+      />
+    </div>
+
+  </div>
+
+  <div class="drag-drop-button-container">
+
+    <button
+      mat-mini-fab
+      color="accent"
+      (click)="addProject()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button
+      mat-raised-button
+      class="drag-drop-form-button"
+      color="primary"
+      [disabled]="!changed || !valid"
+      (click)="onSubmit()"
+    >
+      Guardar
+    </button>
+
+  </div>
+
+</div>

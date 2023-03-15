@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
-import { DataService } from 'src/app/shared/services/data/data.service';
+import { AboutMeData, DataService } from 'src/app/shared/services/data/data.service';
 
 
 @Component({
@@ -13,7 +12,7 @@ export class AboutMeComponent implements OnInit {
 
   constructor( private readonly dataService: DataService ) {}
 
-  data = {
+  data: AboutMeData = {
     title: "",
     subtitle: "",
     text: "",

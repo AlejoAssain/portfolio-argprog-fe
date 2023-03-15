@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { DataService } from 'src/app/shared/services/data/data.service';
+import { BannerData, DataService } from 'src/app/shared/services/data/data.service';
 import { getDirtyValues } from '../../shared/form-utils';
 
 
@@ -16,21 +16,13 @@ export class BannerComponent implements OnInit {
     subtitle: new FormControl(''),
   });
 
-  data: {
-    title: string,
-    subtitle: string
-  } = { title: '', subtitle: ''};
+  data: BannerData = { title: '', subtitle: '' };
 
   constructor ( private readonly dataService: DataService ) {}
 
   ngOnInit(): void {
-    // get section data from service
     this.data = this.dataService.getBannerData();
-
-    // set initial form data to data obtained
     this.bannerForm.setValue(this.data);
-
-    console.log("Initial values: ", this.bannerForm.getRawValue());
   }
 
   onSubmit() {
@@ -38,7 +30,10 @@ export class BannerComponent implements OnInit {
       const dirtyValues = getDirtyValues(this.bannerForm);
 
       // TODO - call data service and send post request to API to make changes
+
       console.log("Submit values: ", dirtyValues);
+      this.bannerForm.reset();
+      this.ngOnInit()
     }
   }
 

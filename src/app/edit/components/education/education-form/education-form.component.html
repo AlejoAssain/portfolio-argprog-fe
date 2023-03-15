@@ -1,0 +1,80 @@
+<mat-card class="item-form-container">
+
+  <form
+    class="item-form data-form"
+    [formGroup]="educationForm"
+  >
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="institutionName"
+        placeholder="Nombre de inst."
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="institutionNameControl.errors?.['required']">El nombre de inst. es requerido</mat-error>
+      <mat-error *ngIf="institutionNameControl.errors?.['minlength']">El nombre de inst. es corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="title"
+        placeholder="Titulo"
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="titleControl.errors?.['required']">El título es requerido</mat-error>
+      <mat-error *ngIf="titleControl.errors?.['minlength']">El título es muy corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="imageLink"
+        placeholder="Link de la imagen"
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="imageLinkControl.errors?.['required']">El link es requerido</mat-error>
+      <mat-error *ngIf="imageLinkControl.errors?.['minlength']">El link es muy corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="number"
+        formControlName="yearFrom"
+        placeholder="Año desde"
+        required
+      >
+      <mat-error *ngIf="yearFromControl.errors?.['required']">El año desde es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="number"
+        formControlName="yearTo"
+        placeholder="Año hasta"
+      >
+    </mat-form-field>
+
+    <button
+      mat-mini-fab
+      color="warn"
+      (click)="onDelete()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </form>
+
+
+
+</mat-card>
+

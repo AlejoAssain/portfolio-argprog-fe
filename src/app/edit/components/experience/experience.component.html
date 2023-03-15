@@ -1,1 +1,62 @@
-<p>experience works!</p>
+<div class="section-container">
+  <mat-card class="section-wrapper">
+
+    <mat-card-header class="section-header-container">
+
+      <mat-card-title>EXPERIENCIA</mat-card-title>
+
+    </mat-card-header>
+
+    <form
+      class="banner-form section-form data-form"
+      [formGroup]="experienceForm"
+      (ngSubmit)="onSubmit()"
+    >
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Título de la sección</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="title"
+          placeholder="Titulo"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="titleControl.errors?.['required']">El título es requerido</mat-error>
+        <mat-error *ngIf="titleControl.errors?.['minlength']">El título es muy corto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="section-form-field" appearance="fill">
+        <mat-label>Subtítulo de la sección</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="subtitle"
+          placeholder="Subtitulo"
+          required
+          minlength="4"
+        >
+        <mat-error *ngIf="subtitleControl.errors?.['required']">El subtítulo es requerido</mat-error>
+        <mat-error *ngIf="subtitleControl.errors?.['minlength']">El subtítulo es muy corto</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="section-form-button"
+        color="primary"
+        [disabled]="!experienceForm.valid || !experienceForm.dirty"
+        type="submit"
+      >
+        Guardar
+      </button>
+
+    </form>
+
+    <app-experience-drag-drop-form
+      [experiences]="data.experiences"
+    />
+
+  </mat-card>
+</div>
+

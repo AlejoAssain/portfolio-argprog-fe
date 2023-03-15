@@ -1,6 +1,77 @@
 import { Injectable } from '@angular/core';
 
 
+export interface BannerData {
+  title: string;
+  subtitle: string;
+}
+
+export interface AboutMeData {
+  title: string;
+  subtitle: string;
+  text: string;
+  profilePicLink: string;
+  profilePicCaption: string;
+}
+
+export interface Skill {
+  name: string;
+  description: string;
+  percentage: number;
+}
+
+export interface SkillsData {
+  title: string;
+  subtitle: string;
+  skills: Skill[];
+}
+
+export interface Education {
+  institutionName: string;
+  title: string;
+  yearFrom: number;
+  yearTo?: number;
+  imageLink: string;
+}
+
+export interface EducationData {
+  title: string;
+  subtitle: string;
+  educations: Education[];
+}
+
+export interface Experience {
+  company: string;
+  imageLink: string;
+  position: string;
+  positionInformation: string;
+  yearFrom: number;
+  monthFrom: string;
+  yearTo?: number;
+  monthTo?: string;
+}
+
+export interface ExperienceData {
+  title: string;
+  subtitle: string;
+  experiences: Experience[];
+}
+
+export interface Project {
+  name: string;
+  description: string;
+  month: string;
+  year: number;
+  link: string;
+}
+
+export interface ProjectsData {
+  title: string;
+  subtitle: string;
+  projects: Project[]
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,14 +79,14 @@ export class DataService {
 
   constructor() {}
 
-  getBannerData() {
+  getBannerData(): BannerData {
     return {
       title: "ALEJO ASSAIN",
       subtitle: "BIENVENIDOS A MI PORTFOLIO"
     }
   }
 
-  getAboutMeData() {
+  getAboutMeData(): AboutMeData {
     return {
       title: "Acerca de mi",
       subtitle: "Hola! Mi nombre es Alejo",
@@ -25,10 +96,10 @@ export class DataService {
     }
   }
 
-  getSkillsData() {
+  getSkillsData(): SkillsData {
     return {
       title: "Hard & Soft Skills",
-      subtitle: "Algunos de mis skills en programacion",
+      subtitle: "Algunos de mis skills en programación",
       skills: [{
         name: "SpringBoot",
         percentage: 100,
@@ -50,7 +121,7 @@ export class DataService {
     }
   }
 
-  getEducationData() {
+  getEducationData(): EducationData {
     return {
       title: "Educacion",
       subtitle: "Mi formacion academica",
@@ -64,12 +135,13 @@ export class DataService {
         institutionName: "Academia de Inglés americano I.I.C.A.N.A",
         title: "Basic English Instruction Program - 4th",
         yearFrom: 2010,
-        yearTo: 2017
+        yearTo: 2017,
+        imageLink: "/assets/img/utn-logo.jpg"
       }]
     }
   }
 
-  getExperienceData() {
+  getExperienceData(): ExperienceData {
     return {
       title: "Experiencia",
       subtitle: "Mis experiencias laborales",
@@ -95,10 +167,10 @@ export class DataService {
     }
   }
 
-  getProjectsData() {
+  getProjectsData(): ProjectsData {
     return {
       title: "Proyectos",
-      subtitle: "",
+      subtitle: "Mis proyectos personales",
       projects: [
         {
           name: "Blog",

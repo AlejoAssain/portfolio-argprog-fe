@@ -16,7 +16,6 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { EditSaveButtonComponent } from './components/edit-save-button/edit-save-button.component';
 
 
 @NgModule({
@@ -27,8 +26,7 @@ import { EditSaveButtonComponent } from './components/edit-save-button/edit-save
     EducationComponent,
     ExperienceComponent,
     ProjectsComponent,
-    SkillsComponent,
-    EditSaveButtonComponent
+    SkillsComponent
   ],
   imports: [
     CommonModule,

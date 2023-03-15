@@ -1,0 +1,62 @@
+<mat-card class="item-form-container">
+
+  <form
+    class="item-form data-form"
+    [formGroup]="skillForm"
+  >
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Nombre"
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="nameControl.errors?.['required']">El título es requerido</mat-error>
+      <mat-error *ngIf="nameControl.errors?.['minlength']">El título es muy corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Descripción"
+        required
+        minlength="4"
+      ></textarea>
+      <mat-error *ngIf="descriptionControl.errors?.['required']">La descripción es requerida</mat-error>
+      <mat-error *ngIf="descriptionControl.errors?.['minlength']">El descripción es muy corta</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="number"
+        formControlName="percentage"
+        placeholder="Porcentaje"
+        required
+        min="10"
+        max="100"
+      >
+      <mat-error *ngIf="percentageControl.errors?.['required']">El porcentaje es requerido</mat-error>
+      <mat-error *ngIf="percentageControl.errors?.['min']">El porcentaje debe ser mayor</mat-error>
+      <mat-error *ngIf="percentageControl.errors?.['max']">El porcentaje debe ser menor</mat-error>
+
+    </mat-form-field>
+
+    <button
+      mat-mini-fab
+      color="warn"
+      (click)="onDelete()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </form>
+
+
+
+</mat-card>
+

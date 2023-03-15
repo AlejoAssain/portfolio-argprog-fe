@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data/data.service';
+
+import { DataService, ProjectsData } from 'src/app/shared/services/data/data.service';
 
 
 @Component({
@@ -10,17 +11,7 @@ import { DataService } from 'src/app/shared/services/data/data.service';
 export class ProjectsComponent implements OnInit {
   constructor (private readonly dataService: DataService) {}
 
-  data: {
-    title: string;
-    subtitle: string;
-    projects: {
-        name: string;
-        description: string;
-        month: string;
-        year: number;
-        link: string;
-    }[]
-  } = {title: "", subtitle: "", projects: []};
+  data: ProjectsData = {title: "", subtitle: "", projects: []};
 
   ngOnInit(): void {
     this.data = this.dataService.getProjectsData();

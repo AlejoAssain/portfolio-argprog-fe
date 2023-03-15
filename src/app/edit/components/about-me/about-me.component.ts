@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { DataService } from 'src/app/shared/services/data/data.service';
+import { AboutMeData, DataService } from 'src/app/shared/services/data/data.service';
 import { getDirtyValues } from '../../shared/form-utils';
 
 
@@ -19,7 +19,7 @@ export class AboutMeComponent implements OnInit {
     profilePicCaption: new FormControl('')
   });
 
-  data = {
+  data: AboutMeData = {
     title: "",
     subtitle: "",
     text: "",
@@ -30,13 +30,8 @@ export class AboutMeComponent implements OnInit {
   constructor ( private readonly dataService: DataService ) {}
 
   ngOnInit(): void {
-    // get section data from service
     this.data = this.dataService.getAboutMeData();
-
-    // set initial form data to data obtained
     this.aboutMeForm.setValue(this.data);
-
-    console.log("Initial values: ", this.aboutMeForm.getRawValue());
   }
 
   onSubmit() {

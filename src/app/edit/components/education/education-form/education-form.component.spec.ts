@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditSaveButtonComponent } from './edit-save-button.component';
+import { EducationFormComponent } from './education-form.component';
 
-describe('EditSaveButtonComponent', () => {
-  let component: EditSaveButtonComponent;
-  let fixture: ComponentFixture<EditSaveButtonComponent>;
+describe('EducationFormComponent', () => {
+  let component: EducationFormComponent;
+  let fixture: ComponentFixture<EducationFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditSaveButtonComponent ]
+      declarations: [ EducationFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditSaveButtonComponent);
+    fixture = TestBed.createComponent(EducationFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

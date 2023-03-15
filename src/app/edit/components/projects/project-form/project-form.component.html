@@ -1,0 +1,86 @@
+<mat-card class="item-form-container">
+
+  <form
+    class="item-form data-form"
+    [formGroup]="projectForm"
+  >
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Nombre del proyecto"
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="nameControl.errors?.['required']">El nombre de inst. es requerido</mat-error>
+      <mat-error *ngIf="nameControl.errors?.['minlength']">El nombre de inst. es corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <textarea
+        matInput
+        type="text"
+        formControlName="description"
+        placeholder="Desc. del proyecto"
+        required
+        minlength="3"
+      ></textarea>
+      <mat-error *ngIf="descriptionControl.errors?.['required']">El título es requerido</mat-error>
+      <mat-error *ngIf="descriptionControl.errors?.['minlength']">El título es muy corto</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="item-form-input" appearance="fill">
+      <input
+        matInput
+        type="text"
+        formControlName="link"
+        placeholder="Link al proyecto"
+        required
+        minlength="3"
+      >
+      <mat-error *ngIf="linkControl.errors?.['required']">El link es requerido</mat-error>
+      <mat-error *ngIf="linkControl.errors?.['minlength']">El link es muy corto</mat-error>
+    </mat-form-field>
+
+    <div class="date-input-container">
+
+      <mat-form-field class="item-form-input" appearance="fill">
+        <input
+          matInput
+          type="number"
+          formControlName="year"
+          placeholder="Año"
+          required
+        >
+        <mat-error *ngIf="yearControl.errors?.['required']">El año desde es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="item-form-input" appearance="fill">
+        <input
+          matInput
+          type="text"
+          formControlName="month"
+          placeholder="Mes"
+          required
+          minlength="3"
+        >
+        <mat-error *ngIf="monthControl.errors?.['required']">El link es requerido</mat-error>
+        <mat-error *ngIf="monthControl.errors?.['minlength']">El link es muy corto</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <button
+      mat-mini-fab
+      color="warn"
+      (click)="onDelete()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </form>
+
+</mat-card>
+

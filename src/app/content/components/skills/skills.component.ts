@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data/data.service';
+import { DataService, SkillsData } from 'src/app/shared/services/data/data.service';
 
 @Component({
   selector: 'app-skills',
@@ -9,20 +9,9 @@ import { DataService } from 'src/app/shared/services/data/data.service';
 export class SkillsComponent implements OnInit {
   constructor (private readonly dataService: DataService) {}
 
-  data: {
-    title: string;
-    subtitle: string;
-    skills: {
-        name: string;
-        percentage: number;
-        description: string;
-    }[]
-  } = {subtitle: '', title: '', skills: []};
+  data: SkillsData = {subtitle: '', title: '', skills: []};
 
   ngOnInit(): void {
     this.data = this.dataService.getSkillsData();
   }
-
-
-
 }
