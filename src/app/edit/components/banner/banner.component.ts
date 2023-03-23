@@ -16,7 +16,7 @@ export class BannerComponent implements OnInit {
     subtitle: new FormControl(''),
   });
 
-  data: BannerData = { title: '', subtitle: '' };
+  data: BannerData | null = { title: '', subtitle: '' };
 
   constructor ( private readonly dataService: DataService ) {}
 

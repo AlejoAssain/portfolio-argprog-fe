@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/services/data/data.service';
 import { EditModule } from './edit/edit.module';
 import { EditComponent } from './edit/edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModule,
     ContentModule,
     LoginModule,
