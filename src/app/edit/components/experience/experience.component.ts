@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { DataService, ExperienceData } from 'src/app/shared/services/data/data.service';
@@ -11,31 +11,33 @@ import { getDirtyValues } from '../../shared/form-utils';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
-  experienceForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    subtitle: new FormControl(''),
-  });
-
-  data: ExperienceData = {
+  @Input() experienceData: ExperienceData = {
     title: '', subtitle: '',
     experiences: []
   };
 
   constructor ( private readonly dataService: DataService ) {}
 
+  experienceForm: FormGroup = new FormGroup({
+    title: new FormControl(''),
+    subtitle: new FormControl(''),
+  });
+
   ngOnInit(): void {
-    this.data = this.dataService.getExperienceData();
-    this.experienceForm.setValue({ title: this.data.title, subtitle: this.data.subtitle });
+    this.experienceForm.setValue({
+      title: this.experienceData.title,
+      subtitle: this.experienceData.subtitle
+    });
   }
 
   onSubmit() {
     if (this.experienceForm.valid) {
       const dirtyValues = getDirtyValues(this.experienceForm);
 
-      // TODO - call data service and send post request to API to make changes
-      console.log("Submit values: ", dirtyValues);
-      this.experienceForm.reset();
-      this.ngOnInit();
+      this.dataService.setSectionData("experience", dirtyValues).subscribe(response => {
+        this.experienceForm.reset();
+        this.experienceForm.setValue(response);
+      });
     }
   }
 

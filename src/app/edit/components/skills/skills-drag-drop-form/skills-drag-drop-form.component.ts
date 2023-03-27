@@ -43,10 +43,10 @@ export class SkillsDragDropFormComponent implements OnInit {
 
   onSubmit() {
     if (this.valid) {
-      // TODO - save changes to backend with dataService
-
-      console.log(this.skillsCopy);
-      this.ngOnInit();
+      this.dataService.setSkillsList(this.skillsCopy).subscribe(response => {
+        this.skillsCopy = response.skills;
+      });
+      this.changed = false;
     }
   }
 

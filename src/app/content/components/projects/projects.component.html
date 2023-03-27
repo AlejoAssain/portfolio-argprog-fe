@@ -3,20 +3,21 @@
 
     <mat-card-header>
       <mat-card-title-group class="section-title-container">
-        <mat-card-title>{{ data.title }}</mat-card-title>
-        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+        <mat-card-title>{{ projectsData.title }}</mat-card-title>
+        <mat-card-subtitle>{{ projectsData.subtitle }}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content class="section-items-container project-items-container">
       <div
         class="section-item-container"
-        *ngFor="let project of data.projects"
+        *ngFor="let project of projectsData.projects"
       >
         <button
           mat-raised-button
           color="primary"
-          (click)="navigateToProject(project.link)"
+          *ngIf="project.projectLink"
+          (click)="navigateToProject(project.projectLink)"
         >
           Ir
         </button>
@@ -28,7 +29,8 @@
             {{ project.description }}
           </div>
           <div class="project-item-date">
-            {{ project.year + " " + project.month }}
+            <!-- FIXME - fix project's year month display -->
+            {{ project.projectYearMonth }}
           </div>
         </div>
 

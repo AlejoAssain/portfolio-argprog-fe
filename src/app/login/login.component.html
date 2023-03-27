@@ -10,7 +10,7 @@
 
     <form
       class="login-form data-form"
-      #loginForm="ngForm"
+      [formGroup]="loginForm"
     >
 
       <mat-form-field class="login-form-field" appearance="fill">
@@ -18,15 +18,13 @@
         <input
           matInput
           type="text"
-          name="username"
-          ngModel
-          #username="ngModel"
+          formControlName="username"
           placeholder="Username"
           required
           minlength="4"
         >
-        <mat-error *ngIf="username.errors?.['required']">El nombre de usuario es requerido</mat-error>
-        <mat-error *ngIf="username.errors?.['minlength']">El nombre de usuario es muy corto</mat-error>
+        <mat-error *ngIf="usernameControl.errors?.['required']">El nombre de usuario es requerido</mat-error>
+        <mat-error *ngIf="usernameControl.errors?.['minlength']">El nombre de usuario es muy corto</mat-error>
       </mat-form-field>
 
       <mat-form-field class="login-form-field" appearance="fill">
@@ -34,9 +32,7 @@
         <input
           matInput
           [type]="hide ? 'password' : 'text'"
-          name="password"
-          ngModel
-          #password="ngModel"
+          formControlName="password"
           placeholder="Password"
           required
           minlength="4"
@@ -49,14 +45,15 @@
         >
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="password.errors?.['required']">La contraseña es requerida</mat-error>
-        <mat-error *ngIf="password.errors?.['minlength']">La contraseña es muy corta</mat-error>
+        <mat-error *ngIf="passwordControl.errors?.['required']">La contraseña es requerida</mat-error>
+        <mat-error *ngIf="passwordControl.errors?.['minlength']">La contraseña es muy corta</mat-error>
       </mat-form-field>
 
       <button
         mat-raised-button color="primary"
         class="login-button"
-        (click)="handleSubmit(loginForm)"
+        [disabled]="!loginForm.valid"
+        (click)="onSubmit()"
       >
         Login
       </button>

@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 
 
 export interface BannerData {
@@ -13,7 +15,13 @@ export interface AboutMeData {
   subtitle: string;
   text: string;
   profilePicLink: string;
-  profilePicCap: string;
+  profilePicCap: string
+}
+
+export interface AboutMeExtraData {
+  text: string;
+  profilePicLink: string;
+  profilePicCap: string
 }
 
 export interface Skill {
@@ -29,12 +37,11 @@ export interface SkillsData {
 }
 
 export interface Education {
-  sequence: number;
   institutionName: string;
   title: string;
   yearFrom: number;
   yearTo?: number;
-  imageLink?: string;
+  institutionImageLink?: string;
 }
 
 export interface EducationData {
@@ -44,7 +51,6 @@ export interface EducationData {
 }
 
 export interface Experience {
-  sequence: number
   companyName: string;
   positionName: string;
   positionInfo: string;
@@ -60,10 +66,8 @@ export interface ExperienceData {
 }
 
 export interface Project {
-  sequence: number;
   name: string;
   description: string;
-  month: string;
   projectYearMonth: string;
   projectLink: string;
 }
@@ -83,41 +87,95 @@ export interface ResponseData {
   projects: ProjectsData
 }
 
+export interface SectionResponse {
+  title: string;
+  subtitle: string
+}
+
+export interface SkillsResponse {
+  skills: Skill[]
+}
+
+export interface EducationResponse {
+  educations: Education[]
+}
+
+export interface ExperienceResponse {
+  experiences: Experience[]
+}
+
+export interface ProjectsResponse {
+  projects: Project[]
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  // FIXME - create a dataService such as I can retrieve the data from the content and edit component, and pass it to
-  //         the sections
 
-  // FIXME - fix all the broken components after this change
-
-  private apiUrl: string = "http://localhost:8080"
+  private apiUrl: string = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
-  getData(): Observable<ResponseData> {
-    return this.http.get<ResponseData>(this.apiUrl);
+  private generateHeaders() {
+    return new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("jwtToken")
+    })
   }
 
-  // getAboutMeData(): AboutMeData {
-  //   return;
-  // }
+  getData(): Observable<ResponseData> {
+    return this.http.get<ResponseData>(`${this.apiUrl}/section`);
+  }
 
-  // getSkillsData(): SkillsData {
-  //   return;
-  // }
+  setSectionData(sectionName: string, dirtyValues: { [key: string]: any; }) {
+    return this.http.patch<SectionResponse>(
+      `${this.apiUrl}/section/${sectionName}`, dirtyValues, {
+        headers: this.generateHeaders()
+      }
+    );
+  }
 
-  // getEducationData(): EducationData {
-  //   return;
-  // }
+  setAboutMeData(dirtyValues: { [key: string]: any; }) {
+    return this.http.patch<AboutMeExtraData>(
+      `${this.apiUrl}/about-me`,
+      dirtyValues,
+      {
+        headers: this.generateHeaders()
+      }
+    )
+  }
 
-  // getExperienceData(): ExperienceData {
-  //   return;
-  // }
+  setSkillsList(skills: Skill[]) {
+    return this.http.post<SkillsResponse>(`${this.apiUrl}/skills`, {
+      "skills": skills
+    }, {
+      headers: this.generateHeaders()
+    });
+  }
 
-  // getProjectsData(): ProjectsData {
-  //   return;
-  // }
+  setEducationList(educations: Education[]) {
+    return this.http.post<EducationResponse>(`${this.apiUrl}/education`, {
+      "educations": educations
+    }, {
+      headers: this.generateHeaders()
+    });
+  }
+
+  setExperienceList(experiences: Experience[]) {
+    return this.http.post<ExperienceResponse>(`${this.apiUrl}/experience`, {
+      "experiences": experiences
+    }, {
+      headers: this.generateHeaders()
+    });
+  }
+
+  setProjectList(projects: Project[]) {
+    return this.http.post<ProjectsResponse>(`${this.apiUrl}/project`, {
+      "projects": projects
+    }, {
+      headers: this.generateHeaders()
+    })
+  }
 }

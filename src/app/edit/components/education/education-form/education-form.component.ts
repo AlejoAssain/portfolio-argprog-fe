@@ -10,13 +10,14 @@ import { Education } from 'src/app/shared/services/data/data.service';
   styleUrls: ['./education-form.component.scss']
 })
 export class EducationFormComponent implements OnInit {
+  @Input() educationIndex: number = 0;
   @Input() education: Education = {
     institutionName: '',
-    imageLink: '',
+    institutionImageLink: '',
     title: '',
-    yearFrom: 2023
+    yearFrom: 2023,
   }
-  @Input() educationIndex: number = 0;
+
   @Output() updateEvent = new EventEmitter<{
     newValue: Education,
     index: number,
@@ -26,14 +27,20 @@ export class EducationFormComponent implements OnInit {
 
   educationForm: FormGroup = new FormGroup({
     institutionName: new FormControl(''),
-    imageLink: new FormControl(''),
+    institutionImageLink: new FormControl(''),
     title: new FormControl(''),
     yearFrom: new FormControl(2023),
     yearTo: new FormControl(2023)
   });
 
   ngOnInit(): void {
-    this.educationForm.setValue({ yearTo: null, ...this.education });
+    this.educationForm.setValue({
+      institutionName: this.education.institutionName,
+      institutionImageLink: this.education.institutionImageLink,
+      title: this.education.title,
+      yearFrom: this.education.yearFrom,
+      yearTo: this.education.yearTo
+    });
 
     this.educationForm.valueChanges.subscribe((newEducationValue: Education) => {
       this.updateEvent.emit({
@@ -56,8 +63,8 @@ export class EducationFormComponent implements OnInit {
     return this.educationForm.get("institutionName") as FormControl;
   }
 
-  get imageLinkControl(): FormControl {
-    return this.educationForm.get("imageLink") as FormControl;
+  get institutionImageLinkControl(): FormControl {
+    return this.educationForm.get("institutionImageLink") as FormControl;
   }
 
   get yearFromControl(): FormControl {

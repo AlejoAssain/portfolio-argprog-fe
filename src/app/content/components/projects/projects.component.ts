@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { DataService, ProjectsData } from 'src/app/shared/services/data/data.service';
+import { ProjectsData } from 'src/app/shared/services/data/data.service';
 
 
 @Component({
@@ -8,17 +9,15 @@ import { DataService, ProjectsData } from 'src/app/shared/services/data/data.ser
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements OnInit {
-  constructor (private readonly dataService: DataService) {}
+export class ProjectsComponent {
+  @Input() projectsData!: ProjectsData;
 
-  data: ProjectsData = {title: "", subtitle: "", projects: []};
+  constructor (private readonly router: Router) {}
 
-  ngOnInit(): void {
-    this.data = this.dataService.getProjectsData();
-  }
+  // FIXME - make user navigate to project in new tab
 
   navigateToProject(projectLink: string) {
-    console.log(projectLink);
+    this.router.navigate([projectLink])
   }
 
 }

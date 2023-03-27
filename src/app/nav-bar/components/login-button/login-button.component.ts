@@ -8,14 +8,13 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./login-button.component.scss']
 })
 export class LoginButtonComponent {
-  constructor (private readonly auth: AuthService) {}
+  constructor (private readonly authService: AuthService) {}
 
   isUserAuthenticated() {
-    return this.auth.isAuthenticated();
+    return this.authService.isAuthenticated();
   }
 
   handleLogout() {
-    console.log("logout")
-    this.auth.logout();
+    this.authService.logout();
   }
 }

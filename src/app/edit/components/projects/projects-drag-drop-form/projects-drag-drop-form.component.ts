@@ -43,9 +43,10 @@ export class ProjectsDragDropFormComponent {
 
   onSubmit() {
     if (this.valid) {
-      // TODO - save changes to backend with dataService
-      console.log(this.projectsCopy);
-      this.ngOnInit();
+      this.dataService.setProjectList(this.projectsCopy).subscribe(response => {
+        this.projectsCopy = response.projects;
+      });
+      this.changed = false;
     }
   }
 
@@ -53,9 +54,8 @@ export class ProjectsDragDropFormComponent {
     const newProject: Project = {
       name: "Agrega un nombre al proyecto",
       description: "Agrega una desc. al proyecto",
-      link: "Link al proyecto",
-      year: 2023,
-      month: "Enero"
+      projectLink: "Link al proyecto",
+      projectYearMonth: "2023-01",
     };
 
     this.projects.push(newProject);

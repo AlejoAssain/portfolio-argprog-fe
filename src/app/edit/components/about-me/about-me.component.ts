@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { AboutMeData, DataService } from 'src/app/shared/services/data/data.service';
@@ -11,46 +11,68 @@ import { getDirtyValues } from '../../shared/form-utils';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
-  aboutMeForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    subtitle: new FormControl(''),
-    text: new FormControl(''),
-    profilePicLink: new FormControl(''),
-    profilePicCaption: new FormControl('')
-  });
-
-  data: AboutMeData = {
+  @Input() aboutMeData: AboutMeData = {
     title: "",
     subtitle: "",
     text: "",
     profilePicLink: "",
-    profilePicCaption: "",
+    profilePicCap: "",
   };
+
+  aboutMeSectionForm: FormGroup = new FormGroup({
+    title: new FormControl(''),
+    subtitle: new FormControl('')
+  })
+
+  aboutMeForm: FormGroup = new FormGroup({
+    text: new FormControl(''),
+    profilePicLink: new FormControl(''),
+    profilePicCap: new FormControl('')
+  });
 
   constructor ( private readonly dataService: DataService ) {}
 
   ngOnInit(): void {
-    this.data = this.dataService.getAboutMeData();
-    this.aboutMeForm.setValue(this.data);
+    this.aboutMeSectionForm.setValue({
+      title: this.aboutMeData.title,
+      subtitle: this.aboutMeData.subtitle
+    })
+
+    this.aboutMeForm.setValue({
+      text: this.aboutMeData.text,
+      profilePicLink: this.aboutMeData.profilePicLink,
+      profilePicCap: this.aboutMeData.profilePicCap
+    });
+  }
+
+  sectionOnSubmit() {
+    if (this.aboutMeSectionForm.valid) {
+      const dirtyValues = getDirtyValues(this.aboutMeSectionForm);
+
+      this.dataService.setSectionData("about-me", dirtyValues).subscribe(response => {
+        this.aboutMeSectionForm.reset();
+        this.aboutMeSectionForm.setValue(response);
+      });
+    }
   }
 
   onSubmit() {
     if (this.aboutMeForm.valid) {
       const dirtyValues = getDirtyValues(this.aboutMeForm);
 
-      // TODO - call data service and send post request to API to make changes
-      console.log("Submit values: ", dirtyValues);
-      this.aboutMeForm.reset();
-      this.ngOnInit();
+      this.dataService.setAboutMeData(dirtyValues).subscribe(response => {
+        this.aboutMeForm.reset();
+        this.aboutMeForm.setValue(response);
+      });
     }
   }
 
   get titleControl(): FormControl {
-    return this.aboutMeForm.get("title") as FormControl;
+    return this.aboutMeSectionForm.get("title") as FormControl;
   }
 
   get subtitleControl(): FormControl {
-    return this.aboutMeForm.get("subtitle") as FormControl;
+    return this.aboutMeSectionForm.get("subtitle") as FormControl;
   }
 
   get textControl(): FormControl {
@@ -61,7 +83,7 @@ export class AboutMeComponent implements OnInit {
     return this.aboutMeForm.get("profilePicLink") as FormControl;
   }
 
-  get profilePicCaptionControl(): FormControl {
-    return this.aboutMeForm.get("profilePicCaption") as FormControl;
+  get profilePicCapControl(): FormControl {
+    return this.aboutMeForm.get("profilePicCap") as FormControl;
   }
 }

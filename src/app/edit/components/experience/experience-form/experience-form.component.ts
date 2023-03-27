@@ -10,15 +10,15 @@ import { Experience } from 'src/app/shared/services/data/data.service';
   styleUrls: ['./experience-form.component.scss']
 })
 export class ExperienceFormComponent {
-  @Input() experience: Experience = {
-    company: '',
-    imageLink: '',
-    position: '',
-    positionInformation: '',
-    monthFrom: '',
-    yearFrom: 2023
-  }
   @Input() experienceIndex: number = 0;
+  @Input() experience: Experience = {
+    companyName: '',
+    companyImageLink: '',
+    positionName: '',
+    positionInfo: '',
+    yearMonthFrom: '2023-01',
+  }
+
   @Output() updateEvent = new EventEmitter<{
     newValue: Experience,
     index: number,
@@ -27,18 +27,23 @@ export class ExperienceFormComponent {
   @Output() deleteEvent = new EventEmitter<number>();
 
   experienceForm: FormGroup = new FormGroup({
-    company: new FormControl(''),
-    imageLink: new FormControl(''),
-    position: new FormControl(''),
-    positionInformation: new FormControl(''),
-    yearFrom: new FormControl(2023),
-    monthFrom: new FormControl("Enero"),
-    yearTo: new FormControl(2023),
-    monthTo: new FormControl("Enero")
+    companyName: new FormControl(''),
+    companyImageLink: new FormControl(''),
+    positionName: new FormControl(''),
+    positionInfo: new FormControl(''),
+    yearMonthFrom: new FormControl('2023-01'),
+    yearMonthTo: new FormControl("2023-01")
   });
 
   ngOnInit(): void {
-    this.experienceForm.setValue({ monthTo: null, yearTo: null, ...this.experience });
+    this.experienceForm.setValue({
+      companyName: this.experience.companyName,
+      companyImageLink: this.experience.companyImageLink,
+      positionName: this.experience.positionName,
+      positionInfo: this.experience.positionInfo,
+      yearMonthFrom: this.experience.yearMonthFrom,
+      yearMonthTo: this.experience.yearMonthTo
+    });
 
     this.experienceForm.valueChanges.subscribe((newExperienceValue: Experience) => {
       this.updateEvent.emit({
@@ -53,31 +58,27 @@ export class ExperienceFormComponent {
     this.deleteEvent.emit(this.experienceIndex);
   }
 
-  get companyControl(): FormControl {
-    return this.experienceForm.get("company") as FormControl;
+  get companyNameControl(): FormControl {
+    return this.experienceForm.get("companyName") as FormControl;
   }
 
-  get positionControl(): FormControl {
-    return this.experienceForm.get("position") as FormControl;
+  get positionNameControl(): FormControl {
+    return this.experienceForm.get("positionName") as FormControl;
   }
 
-  get positionInformationControl(): FormControl {
-    return this.experienceForm.get("positionInformation") as FormControl;
+  get positionInfoControl(): FormControl {
+    return this.experienceForm.get("positionInfo") as FormControl;
   }
 
-  get imageLinkControl(): FormControl {
-    return this.experienceForm.get("imageLink") as FormControl;
+  get companyImageLinkControl(): FormControl {
+    return this.experienceForm.get("companyImageLink") as FormControl;
   }
 
-  get monthFromControl(): FormControl {
-    return this.experienceForm.get("monthFrom") as FormControl;
+  get yearMonthFromControl(): FormControl {
+    return this.experienceForm.get("yearMonthFrom") as FormControl;
   }
 
-  get yearFromControl(): FormControl {
-    return this.experienceForm.get("yearFrom") as FormControl;
-  }
-
-  get monthToControl(): FormControl {
-    return this.experienceForm.get("monthTo") as FormControl;
+  get yearMonthToControl(): FormControl {
+    return this.experienceForm.get("yearMonthTo") as FormControl;
   }
 }

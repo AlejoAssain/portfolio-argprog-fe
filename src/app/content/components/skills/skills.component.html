@@ -3,15 +3,15 @@
 
     <mat-card-header>
       <mat-card-title-group class="section-title-container">
-        <mat-card-title>{{ data.title }}</mat-card-title>
-        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+        <mat-card-title>{{ skillsData.title }}</mat-card-title>
+        <mat-card-subtitle>{{ skillsData.subtitle }}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content class="skill-items-container">
       <div
         class="skill-item-container"
-        *ngFor="let skill of data.skills"
+        *ngFor="let skill of skillsData.skills"
       >
         <circle-progress
           titleColor="#fff"

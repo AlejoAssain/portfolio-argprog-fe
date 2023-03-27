@@ -43,20 +43,21 @@ export class ExperienceDragDropFormComponent {
 
   onSubmit() {
     if (this.valid) {
-      // TODO - save changes to backend with dataService
-      console.log(this.experiencesCopy);
-      this.ngOnInit();
+      this.dataService.setExperienceList(this.experiencesCopy).subscribe(response => {
+        this.experiencesCopy = response.experiences;
+      });
+      this.changed = false;
     }
   }
 
   addExperience() {
     const newExperience: Experience = {
-      company: "Agrega nombre de la compañía",
-      imageLink: "Agrega link a la imagen",
-      position: "Agrega nombre de posición",
-      positionInformation: "Agrega info. de la posición",
-      monthFrom: "Enero",
-      yearFrom: 2023
+      companyName: "Agrega nombre de la compañía",
+      companyImageLink: "Agrega link a la imagen",
+      positionName: "Agrega nombre de posición",
+      positionInfo: "Agrega info. de la posición",
+      yearMonthFrom: "2023-01",
+      yearMonthTo: "2024-01"
     };
 
     this.experiences.push(newExperience);

@@ -43,9 +43,10 @@ export class EducationDragDropFormComponent {
 
   onSubmit() {
     if (this.valid) {
-      // TODO - save changes to backend with dataService
-      console.log(this.educationsCopy);
-      this.ngOnInit();
+      this.dataService.setEducationList(this.educationsCopy).subscribe(response => {
+        this.educationsCopy = response.educations;
+      });
+      this.changed = false;
     }
   }
 
@@ -53,8 +54,9 @@ export class EducationDragDropFormComponent {
     const newEducation: Education = {
       institutionName: "Agrega un nombre de inst.",
       title: "Agrega un titulo",
-      imageLink: "Agrega un nombre de imagen",
-      yearFrom: 2023
+      institutionImageLink: "Agrega un nombre de imagen",
+      yearFrom: 2023,
+      yearTo: 2024
     };
 
     this.educations.push(newEducation);

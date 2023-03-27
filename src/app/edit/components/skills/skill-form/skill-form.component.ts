@@ -12,6 +12,7 @@ import { Skill } from 'src/app/shared/services/data/data.service';
 export class SkillFormComponent implements OnInit {
   @Input() skill: Skill = {name: '', description: '', percentage: 0}
   @Input() skillIndex: number = 0;
+
   @Output() updateEvent = new EventEmitter<{
     newValue: Skill,
     index: number,
@@ -26,7 +27,11 @@ export class SkillFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.skillForm.setValue({ ...this.skill })
+    this.skillForm.setValue({
+      name: this.skill.name,
+      description: this.skill.description,
+      percentage: this.skill.percentage
+    });
 
     this.skillForm.valueChanges.subscribe((newSkillValue: Skill) => {
       this.updateEvent.emit({

@@ -35,13 +35,11 @@
       <input
         matInput
         type="text"
-        formControlName="imageLink"
+        formControlName="institutionImageLink"
         placeholder="Link de la imagen"
-        required
         minlength="3"
       >
-      <mat-error *ngIf="imageLinkControl.errors?.['required']">El link es requerido</mat-error>
-      <mat-error *ngIf="imageLinkControl.errors?.['minlength']">El link es muy corto</mat-error>
+      <mat-error *ngIf="institutionImageLinkControl.errors?.['minlength']">El link es muy corto</mat-error>
     </mat-form-field>
 
     <mat-form-field class="item-form-input" appearance="fill">

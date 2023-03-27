@@ -3,34 +3,36 @@
 
     <mat-card-header>
       <mat-card-title-group class="section-title-container">
-        <mat-card-title>{{ data.title }}</mat-card-title>
-        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+        <mat-card-title>{{ experienceData.title }}</mat-card-title>
+        <mat-card-subtitle>{{ experienceData.subtitle }}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content class="section-items-container experience-items-container">
       <div
         class="section-item-container"
-        *ngFor="let experience of data.experiences"
+        *ngFor="let experience of experienceData.experiences"
       >
         <img
           class="section-item-img"
-          *ngIf="experience.imageLink"
-          [src]="experience.imageLink"
+          *ngIf="experience.companyImageLink"
+          [src]="experience.companyImageLink"
           alt="Experience Logo"
         >
         <div class="section-text-container">
           <div class="section-item-title">
-            {{ experience.position }}
+            {{ experience.positionName }}
           </div>
           <div class="experience-item-company">
-            En {{ experience.company }}
+            En {{ experience.companyName }}
           </div>
           <div>
-            {{ experience.positionInformation }}
+            {{ experience.positionInfo }}
           </div>
+
+          <!-- FIXME - fix year-month display -->
           <div class="experience-item-date">
-            {{ experience.yearFrom + " " + experience.monthFrom }} - {{ experience.monthTo + " " + experience.yearTo }}
+            {{ experience.yearMonthFrom }} - {{experience.yearMonthTo || "presente" }}
           </div>
         </div>
 

@@ -9,52 +9,50 @@
       <input
         matInput
         type="text"
-        formControlName="company"
+        formControlName="companyName"
         placeholder="Nombre de compañía"
         required
         minlength="3"
       >
-      <mat-error *ngIf="companyControl.errors?.['required']">El nombre de inst. es requerido</mat-error>
-      <mat-error *ngIf="companyControl.errors?.['minlength']">El nombre de inst. es corto</mat-error>
+      <mat-error *ngIf="companyNameControl.errors?.['required']">El nombre de inst. es requerido</mat-error>
+      <mat-error *ngIf="companyNameControl.errors?.['minlength']">El nombre de inst. es corto</mat-error>
     </mat-form-field>
 
     <mat-form-field class="item-form-input" appearance="fill">
       <input
         matInput
         type="text"
-        formControlName="position"
+        formControlName="positionName"
         placeholder="Nombre de posición"
         required
         minlength="3"
       >
-      <mat-error *ngIf="positionControl.errors?.['required']">El título es requerido</mat-error>
-      <mat-error *ngIf="positionControl.errors?.['minlength']">El título es muy corto</mat-error>
+      <mat-error *ngIf="positionNameControl.errors?.['required']">El título es requerido</mat-error>
+      <mat-error *ngIf="positionNameControl.errors?.['minlength']">El título es muy corto</mat-error>
     </mat-form-field>
 
     <mat-form-field class="item-form-input" appearance="fill">
       <textarea
         matInput
         type="text"
-        formControlName="positionInformation"
+        formControlName="positionInfo"
         placeholder="Info. de posición"
         required
         minlength="3"
       ></textarea>
-      <mat-error *ngIf="positionInformationControl.errors?.['required']">El título es requerido</mat-error>
-      <mat-error *ngIf="positionInformationControl.errors?.['minlength']">El título es muy corto</mat-error>
+      <mat-error *ngIf="positionInfoControl.errors?.['required']">El título es requerido</mat-error>
+      <mat-error *ngIf="positionInfoControl.errors?.['minlength']">El título es muy corto</mat-error>
     </mat-form-field>
 
     <mat-form-field class="item-form-input" appearance="fill">
       <input
         matInput
         type="text"
-        formControlName="imageLink"
+        formControlName="companyImageLink"
         placeholder="Link de la imagen"
-        required
         minlength="3"
       >
-      <mat-error *ngIf="imageLinkControl.errors?.['required']">El link es requerido</mat-error>
-      <mat-error *ngIf="imageLinkControl.errors?.['minlength']">El link es muy corto</mat-error>
+      <mat-error *ngIf="companyImageLinkControl.errors?.['minlength']">El link es muy corto</mat-error>
     </mat-form-field>
 
     <div class="date-input-container">
@@ -62,50 +60,22 @@
       <mat-form-field class="item-form-input" appearance="fill">
         <input
           matInput
-          type="number"
-          formControlName="yearFrom"
-          placeholder="Año desde"
+          type="text"
+          formControlName="yearMonthFrom"
+          placeholder="YYYY-MM desde"
           required
         >
-        <mat-error *ngIf="yearFromControl.errors?.['required']">El año desde es requerido</mat-error>
+        <mat-error *ngIf="yearMonthFromControl.errors?.['required']">El año desde es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="item-form-input" appearance="fill">
         <input
           matInput
           type="text"
-          formControlName="monthFrom"
-          placeholder="Mes desde"
-          required
-          minlength="3"
-        >
-        <mat-error *ngIf="monthToControl.errors?.['minlength']">El mes es corto</mat-error>
-      </mat-form-field>
-
-    </div>
-
-    <div class="date-input-container">
-
-      <mat-form-field class="item-form-input" appearance="fill">
-        <input
-          matInput
-          type="number"
-          formControlName="yearTo"
-          placeholder="Año hasta"
+          formControlName="yearMonthTo"
+          placeholder="YYYY-MM hasta"
         >
       </mat-form-field>
-
-      <mat-form-field class="item-form-input" appearance="fill">
-        <input
-          matInput
-          type="text"
-          formControlName="monthTo"
-          placeholder="Mes hasta"
-          minlength="3"
-        >
-        <mat-error *ngIf="monthToControl.errors?.['minlength']">El mes es corto</mat-error>
-      </mat-form-field>
-
 
     </div>
 

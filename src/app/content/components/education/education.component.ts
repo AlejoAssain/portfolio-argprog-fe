@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { DataService, EducationData } from 'src/app/shared/services/data/data.service';
+import { EducationData } from 'src/app/shared/services/data/data.service';
 
 
 @Component({
@@ -8,14 +8,8 @@ import { DataService, EducationData } from 'src/app/shared/services/data/data.se
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']
 })
-export class EducationComponent implements OnInit {
-  constructor (private readonly dataService: DataService) {}
+export class EducationComponent {
+  @Input() educationData!: EducationData;
 
-  presentDateText = "Presente"
-
-  data: EducationData = {title: "", subtitle: "", educations: []}
-
-  ngOnInit(): void {
-    this.data = this.dataService.getEducationData();
-  }
+  presentDateText = "Presente";
 }

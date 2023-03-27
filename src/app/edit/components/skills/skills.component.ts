@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { DataService, SkillsData } from 'src/app/shared/services/data/data.service';
 import { getDirtyValues } from '../../shared/form-utils';
@@ -17,23 +16,22 @@ export class SkillsComponent {
     subtitle: new FormControl(''),
   });
 
-  data: SkillsData = {subtitle: '', title: '', skills: []};
+  @Input() skillsData: SkillsData = {subtitle: '', title: '', skills: []};
 
   constructor ( private readonly dataService: DataService ) {}
 
   ngOnInit(): void {
-    this.data = this.dataService.getSkillsData();
-    this.skillsForm.setValue({ title: this.data.title, subtitle: this.data.subtitle });
+    this.skillsForm.setValue({ title: this.skillsData.title, subtitle: this.skillsData.subtitle });
   }
 
   onSubmit() {
     if (this.skillsForm.valid) {
       const dirtyValues = getDirtyValues(this.skillsForm);
 
-      // TODO - call data service and send post request to API to make changes
-      console.log("Submit values: ", dirtyValues);
-      this.skillsForm.reset();
-      this.ngOnInit();
+      this.dataService.setSectionData("skills", dirtyValues).subscribe(response => {
+        this.skillsForm.reset();
+        this.skillsForm.setValue(response);
+      });
     }
   }
 

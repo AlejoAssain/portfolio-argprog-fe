@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { BannerData, DataService } from 'src/app/shared/services/data/data.service';
+import { DataService, BannerData } from 'src/app/shared/services/data/data.service';
 import { getDirtyValues } from '../../shared/form-utils';
 
 
@@ -11,29 +11,27 @@ import { getDirtyValues } from '../../shared/form-utils';
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent implements OnInit {
+  @Input() bannerData: BannerData = { title: '', subtitle: '' };
+
+  constructor (private readonly dataService: DataService) {}
+
   bannerForm: FormGroup = new FormGroup({
     title: new FormControl(''),
     subtitle: new FormControl(''),
   });
 
-  data: BannerData | null = { title: '', subtitle: '' };
-
-  constructor ( private readonly dataService: DataService ) {}
-
   ngOnInit(): void {
-    this.data = this.dataService.getBannerData();
-    this.bannerForm.setValue(this.data);
+    this.bannerForm.setValue(this.bannerData);
   }
 
   onSubmit() {
     if (this.bannerForm.valid) {
       const dirtyValues = getDirtyValues(this.bannerForm);
 
-      // TODO - call data service and send post request to API to make changes
-
-      console.log("Submit values: ", dirtyValues);
-      this.bannerForm.reset();
-      this.ngOnInit()
+      this.dataService.setSectionData("banner", dirtyValues).subscribe(response => {
+        this.bannerForm.reset();
+        this.bannerForm.setValue(response);
+      });
     }
   }
 

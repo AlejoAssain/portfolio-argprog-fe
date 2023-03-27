@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { DataService, ProjectsData } from 'src/app/shared/services/data/data.service';
@@ -11,31 +11,36 @@ import { getDirtyValues } from '../../shared/form-utils';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent {
-  projectsForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    subtitle: new FormControl(''),
-  });
-
-  data: ProjectsData = {
+  @Input() projectsData: ProjectsData = {
     title: '', subtitle: '',
     projects: []
   };
 
   constructor ( private readonly dataService: DataService ) {}
 
+
+  projectsForm: FormGroup = new FormGroup({
+    title: new FormControl(''),
+    subtitle: new FormControl(''),
+  });
+
   ngOnInit(): void {
-    this.data = this.dataService.getProjectsData();
-    this.projectsForm.setValue({ title: this.data.title, subtitle: this.data.subtitle });
+    this.projectsForm.setValue({
+      title: this.projectsData.title,
+      subtitle: this.projectsData.subtitle
+    });
   }
 
   onSubmit() {
     if (this.projectsForm.valid) {
-      const dirtyValues = getDirtyValues(this.projectsForm);
+      if (this.projectsForm.valid) {
+        const dirtyValues = getDirtyValues(this.projectsForm);
 
-      // TODO - call data service and send post request to API to make changes
-      console.log("Submit values: ", dirtyValues);
-      this.projectsForm.reset();
-      this.ngOnInit();
+        this.dataService.setSectionData("projects", dirtyValues).subscribe(response => {
+          this.projectsForm.reset();
+          this.projectsForm.setValue(response);
+        });
+      }
     }
   }
 
@@ -46,5 +51,4 @@ export class ProjectsComponent {
   get subtitleControl(): FormControl {
     return this.projectsForm.get("subtitle") as FormControl;
   }
-
 }

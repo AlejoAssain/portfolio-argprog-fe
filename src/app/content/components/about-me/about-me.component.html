@@ -6,21 +6,21 @@
 
       <mat-card-title-group class="section-title-container">
 
-        <mat-card-title>{{ data.title }}</mat-card-title>
-        <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+        <mat-card-title>{{ aboutMeData.title }}</mat-card-title>
+        <mat-card-subtitle>{{ aboutMeData.subtitle }}</mat-card-subtitle>
         <div class="about-me-img-container">
           <img
             class="about-me-img"
-            [src]="data.profilePicLink"
+            [src]="aboutMeData.profilePicLink"
           >
-          <h4>{{ data.profilePicCaption }}</h4>
+          <h4>{{ aboutMeData.profilePicCap }}</h4>
         </div>
 
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content>
-      {{ data.text }}
+      {{ aboutMeData.text }}
     </mat-card-content>
 
   </mat-card>

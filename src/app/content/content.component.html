@@ -1,6 +1,9 @@
-<app-banner/>
-<app-about-me/>
-<app-skills/>
-<app-education/>
-<app-experience/>
-<app-projects/>
+<div *ngIf="data">
+  <app-edit-button/>
+  <app-banner [bannerData]="data.banner" />
+  <app-about-me [aboutMeData]="data.aboutMe" />
+  <app-skills [skillsData]="data.skills" />
+  <app-education [educationData]="data.education" />
+  <app-experience [experienceData]="data.experience" />
+  <app-projects [projectsData]="data.projects" />
+</div>

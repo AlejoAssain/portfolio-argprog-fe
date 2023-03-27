@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavBarModule } from './nav-bar/nav-bar.module';
@@ -14,7 +15,8 @@ import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/services/data/data.service';
 import { EditModule } from './edit/edit.module';
 import { EditComponent } from './edit/edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { EditButtonComponent } from './content/components/edit-button/edit-button.component';
 
 
 @NgModule({
@@ -33,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       { path: "", component: ContentComponent },
       { path: "login", component: LoginComponent },
-      { path: "edit", component: EditComponent }
+      { path: "edit", component: EditComponent, canActivate: [AuthGuard] }
     ])
   ],
   providers: [AuthService, DataService],
